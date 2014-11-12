@@ -26,7 +26,9 @@ DROP TABLE IF EXISTS `person`;
 
 CREATE TABLE `person`
 (
-    
+    `name` VARCHAR(250) NOT NULL,
+    `beschreibung` VARCHAR(1000),
+    PRIMARY KEY (`name`)
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
@@ -37,7 +39,8 @@ DROP TABLE IF EXISTS `todonotiz`;
 
 CREATE TABLE `todonotiz`
 (
-    
+    `status` VARCHAR(250) NOT NULL,
+    `prioritaet` INTEGER
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
@@ -59,7 +62,10 @@ DROP TABLE IF EXISTS `projekt`;
 
 CREATE TABLE `projekt`
 (
-    
+    `name` VARCHAR(250) NOT NULL,
+    `startdatum` DATE NOT NULL,
+    `enddatum` DATE NOT NULL,
+    PRIMARY KEY (`name`)
 ) ENGINE=InnoDB;
 
 # This restores the fkey checks, after having unset them earlier
