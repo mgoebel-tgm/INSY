@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8">
+<database name="notizen" defaultIdMethod="native">
+  <table name="notiz" phpName="Notiz">
+  </table>
+
+  <table name ="person" phpName="Person">
+  </table>
+
+  <table name ="todonotiz" phpName="ToDoNotiz">
+  </table>
+
+  <table name ="rezept" phpName="Rezept">
+  </table>
+
+  <table name ="projekt" phpName="Projekt">
+  </table>
+
+</database>  
