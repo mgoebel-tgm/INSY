@@ -68,5 +68,28 @@ CREATE TABLE `projekt`
     PRIMARY KEY (`name`)
 ) ENGINE=InnoDB;
 
+-- ---------------------------------------------------------------------
+-- subnotiz
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `subnotiz`;
+
+CREATE TABLE `subnotiz`
+(
+    `index` INTEGER NOT NULL,
+    PRIMARY KEY (`index`)
+) ENGINE=InnoDB;
+
+-- ---------------------------------------------------------------------
+-- Projektteilnehmer
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `Projektteilnehmer`;
+
+CREATE TABLE `Projektteilnehmer`
+(
+    
+) ENGINE=InnoDB;
+
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;

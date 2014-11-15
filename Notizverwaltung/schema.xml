@@ -26,4 +26,12 @@
     <column name="enddatum" type="date" required="true"/>
   </table>
 
+  <table name="subnotiz" phpName="Subnotiz">
+    <column name="index" type="integer" required="true" primaryKey="true"/>
+  </table>
+
+  <table name="Projektteilnehmer" phpName="Projektteilnehmer">
+    
+  </table>
+
 </database>  
