@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <database name="notes" defaultIdMethod="native">
   <table name="note" phpName="Note">
+    <column name="created_at" type="timestamp" />
+    <column name="lastupdated_at" type="timestamp" />
     <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
     <column name="text" type="varchar" size="1000" required="true"/>
     <column name="subject" type="varchar" size="250" required="true"/>
@@ -16,29 +18,41 @@
   </table>
 
   <table name ="person" phpName="Person">
+    <column name="created_at" type="timestamp" />
+    <column name="lastupdated_at" type="timestamp" />
     <column name="name" type="varchar" size="250" required="true" primaryKey="true"/>
     <column name="description" type="varchar" size="1000" required="false"/>
   </table>
 
   <table name ="todonote" phpName="ToDoNote">
+    <column name="created_at" type="timestamp" />
+    <column name="lastupdated_at" type="timestamp" />
     <column name="status" type="varchar" size="250" required="true"/>
     <column name="priority" type="integer"/>
   </table>
 
   <table name ="recipe" phpName="Recipe">
+    <column name="created_at" type="timestamp" />
+    <column name="lastupdated_at" type="timestamp" />
   </table>
 
   <table name ="project" phpName="Project">
+    <column name="created_at" type="timestamp" />
+    <column name="lastupdated_at" type="timestamp" />
     <column name="name" type="varchar" size="250" required="true" primaryKey="true"/>
     <column name="startdate" type="date" required="true"/>
     <column name="enddate" type="date" required="true"/>
   </table>
 
   <table name="subnote" phpName="Subnote">
+    <column name="created_at" type="timestamp" />
+    <column name="lastupdated_at" type="timestamp" />
     <column name="index" type="integer" required="true" primaryKey="true"/>
   </table>
 
   <table name="participant" phpName="Participant">
+    <column name="created_at" type="timestamp" />
+    <column name="lastupdated_at" type="timestamp" />
     <column name="personname" type="varchar" size="250" required="true"/>
     <column name="projectname" type="varchar" size="250" required="true"/>
     <foreign-key foreignTable="person">
