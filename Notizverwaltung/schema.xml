@@ -25,15 +25,23 @@
   </table>
 
   <table name ="todonote" phpName="ToDoNote">
+    <column name="id" type="integer" required="true" primaryKey="true"/>
     <column name="created_at" type="timestamp" />
     <column name="lastupdated_at" type="timestamp" />
     <column name="status" type="varchar" size="250" required="true"/>
     <column name="priority" type="integer"/>
+    <foreign-key foreignTable="note">
+      <reference local="id" foreign="id"/>
+    </foreign-key>
   </table>
 
   <table name ="recipe" phpName="Recipe">
+    <column name="id" type="integer" required="true" primaryKey="true"/>
     <column name="created_at" type="timestamp" />
     <column name="lastupdated_at" type="timestamp" />
+    <foreign-key foreignTable="note">
+      <reference local="id" foreign="id"/>
+    </foreign-key>
   </table>
 
   <table name ="project" phpName="Project">
@@ -45,16 +53,24 @@
   </table>
 
   <table name="subnote" phpName="Subnote">
+    <column name="recipe_id" type="integer" required="true" primaryKey="true"/>
+    <column name="id" type="integer" required="true" primaryKey="true"/>
     <column name="created_at" type="timestamp" />
     <column name="lastupdated_at" type="timestamp" />
     <column name="index" type="integer" required="true" primaryKey="true"/>
+    <foreign-key foreignTable="note">
+      <reference local="id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="recipe">
+      <reference local="recipe_id" foreign="id"/>
+    </foreign-key>
   </table>
 
   <table name="participant" phpName="Participant">
     <column name="created_at" type="timestamp" />
     <column name="lastupdated_at" type="timestamp" />
-    <column name="personname" type="varchar" size="250" required="true"/>
-    <column name="projectname" type="varchar" size="250" required="true"/>
+    <column name="personname" type="varchar" size="250" required="true" primaryKey="true"/>
+    <column name="projectname" type="varchar" size="250" required="true" primaryKey="true"/>
     <foreign-key foreignTable="person">
       <reference local="personname" foreign="name"/>
     </foreign-key>
