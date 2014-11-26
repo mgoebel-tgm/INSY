@@ -1,37 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<database name="notizen" defaultIdMethod="native">
-  <table name="notiz" phpName="Notiz">
+<database name="notes" defaultIdMethod="native">
+  <table name="note" phpName="Note">
     <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
     <column name="text" type="varchar" size="1000" required="true"/>
-    <column name="betreff" type="varchar" size="250" required="true"/>
-    <column name="datum" type="date" required="true"/>
+    <column name="subject" type="varchar" size="250" required="true"/>
+    <column name="date" type="date" required="true"/>
+    <column name="owner" type="varchar" size="250" required="true"/>
+    <column name="project" type="varchar" size="250"/>
+    <foreign-key foreignTable="person">
+      <reference local="owner" foreign="name"/>
+    </foreign-key>
+    <foreign-key foreignTable="project">
+      <reference local="project" foreign="name"/>
+    </foreign-key>
   </table>
 
   <table name ="person" phpName="Person">
     <column name="name" type="varchar" size="250" required="true" primaryKey="true"/>
-    <column name="beschreibung" type="varchar" size="1000" required="false"/>
+    <column name="description" type="varchar" size="1000" required="false"/>
   </table>
 
-  <table name ="todonotiz" phpName="ToDoNotiz">
+  <table name ="todonote" phpName="ToDoNote">
     <column name="status" type="varchar" size="250" required="true"/>
-    <column name="prioritaet" type="integer"/>
+    <column name="priority" type="integer"/>
   </table>
 
-  <table name ="rezept" phpName="Rezept">
+  <table name ="recipe" phpName="Recipe">
   </table>
 
-  <table name ="projekt" phpName="Projekt">
+  <table name ="project" phpName="Project">
     <column name="name" type="varchar" size="250" required="true" primaryKey="true"/>
-    <column name="startdatum" type="date" required="true"/>
-    <column name="enddatum" type="date" required="true"/>
+    <column name="startdate" type="date" required="true"/>
+    <column name="enddate" type="date" required="true"/>
   </table>
 
-  <table name="subnotiz" phpName="Subnotiz">
+  <table name="subnote" phpName="Subnote">
     <column name="index" type="integer" required="true" primaryKey="true"/>
   </table>
 
-  <table name="Projektteilnehmer" phpName="Projektteilnehmer">
-    
+  <table name="participant" phpName="Participant">
+    <column name="personname" type="varchar" size="250" required="true"/>
+    <column name="projectname" type="varchar" size="250" required="true"/>
+    <foreign-key foreignTable="person">
+      <reference local="personname" foreign="name"/>
+    </foreign-key>
+    <foreign-key foreignTable="project">
+      <reference local="projectname" foreign="name"/>
+    </foreign-key>
   </table>
 
 </database>  

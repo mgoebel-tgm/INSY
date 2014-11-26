@@ -4,23 +4,23 @@ return [
     'propel' => [
         'database' => [
             'connections' => [
-                'notizen' => [
+                'notes' => [
                     'adapter'    => 'mysql',
                     'classname'  => 'Propel\Runtime\Connection\ConnectionWrapper',
-                    'dsn'        => 'mysql:host=localhost;dbname=notizen',
-                    'user'       => 'notizuser',
-                    'password'   => 'notiz',
+                    'dsn'        => 'mysql:host=localhost;dbname=notes',
+                    'user'       => 'noteuser',
+                    'password'   => 'note',
                     'attributes' => []
                 ]
             ]
         ],
         'runtime' => [
-            'defaultConnection' => 'notizen',
-            'connections' => ['notizen']
+            'defaultConnection' => 'notes',
+            'connections' => ['notes']
         ],
         'generator' => [
-            'defaultConnection' => 'notizen',
-            'connections' => ['notizen']
+            'defaultConnection' => 'notes',
+            'connections' => ['notes']
         ]
     ]
 ];
