@@ -56,11 +56,13 @@ public class ArgumentsRDBMS {
 			parser.handleError(e);
 			System.exit(1);
 		}
-		Connection con = new Connection();
-		String command = con.createSelect(arguments.get("s").toString(), arguments.get("r").toString(), arguments.get("w").toString(), arguments.get("f").toString(), arguments.get("T").toString());
-		System.out.println(command);
-		con.sendSelectCommand(arguments.get("h").toString(), arguments.get("u").toString(), 
-				arguments.get("p").toString(), arguments.get("p").toString(), command, 
-				arguments.get("t").toString(), arguments.get("o").toString());
+		
+			Connection con = new Connection();
+			String command = con.createSelect(arguments.get("s").toString(), arguments.get("r").toString(), arguments.get("w").toString(), arguments.get("f").toString(), arguments.get("T").toString());
+			String result = con.sendSelectCommand(arguments.get("h").toString(), arguments.get("u").toString(), 
+					arguments.get("p").toString(), arguments.get("d").toString(), command, 
+					arguments.get("t").toString(), arguments.get("o").toString());
+			System.out.println(result);
+		
 	}
 }

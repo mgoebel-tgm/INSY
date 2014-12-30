@@ -1,6 +1,12 @@
 package exporter;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.*;
+
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 
 /**
@@ -20,25 +26,27 @@ public class Connection {
 	 * @param database the used database
 	 * @param command the select command 
 	 * @param delimeter character to seperate fields
-	 * @param file if selected, file to save result, otherwise text as output only
+	 * @param filename if selected, file to save result, otherwise text as output only
 	 */
-	public String sendSelectCommand (String hostname,String user,String password,String database, String command, String delimeter, String file){
+	public String sendSelectCommand (String hostname,String user,String password,String database, String command, String delimeter, String filename){
 		MysqlDataSource ds = new MysqlDataSource();
 		ds.setServerName(hostname);
 		ds.setUser(user);
 		ds.setPassword(password);
 		ds.setDatabaseName(database);
+		File file;
+		FileWriter rf;
+		BufferedWriter bf;
 		try {
 			System.out.println("Connect to server...");
 			java.sql.Connection con = ds.getConnection();
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(command);
-			System.out.println("halsf");
 			ResultSetMetaData restit = rs.getMetaData(); // for the rows
 			this.anz = restit.getColumnCount(); // how much rows the result is
 
 			String result = "";
-			if(file == null || file.equals("")){
+			if(filename == null || filename.equals("")){
 				System.out.println("Result of '"+command+"': \n");
 				while(rs.next()){
 					for(int i = 1; i <= anz;i++){
@@ -49,11 +57,27 @@ public class Connection {
 				rs.close(); st.close(); con.close(); // close everything, so it can be open later again
 				return result;
 			}else{
-				rs.close(); st.close(); con.close(); // close everything, so it can be open later again
-				return "not implemented yet";
+				file = new File(filename);
+				rf = new FileWriter(file);
+				bf = new BufferedWriter(rf); 
+				while(rs.next()){
+					for(int i = 1; i <= anz;i++){
+						bf.write(rs.getString(i)+delimeter);
+					}
+					bf.newLine();
+				}
+				rs.close(); st.close(); con.close(); bf.close();rf.close(); // close everything, so it can be open later again
+				return "Output saved in "+filename;
 			}
 		} catch (SQLException e) {
-			System.err.println("SQL Fehler aufgetreten");
+			System.err.println("Failed to connect.");
+			System.exit(1);
+		} catch (FileNotFoundException ex) {
+			System.err.println("File "+filename+" can not be created");
+			System.exit(1);
+		} catch (IOException ex) {
+			System.err.println("Failed to write in "+filename);
+			System.exit(1);
 		}
 		return null;
 	}

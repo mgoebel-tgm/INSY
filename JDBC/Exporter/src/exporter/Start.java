@@ -17,9 +17,9 @@ public class Start {
   */
 	public static void main(String[] args) {
 		Connection con = new Connection();
-		String befehl = con.createSelect(null, "DESC", null, "*", "Person");
+		String befehl = con.createSelect(null, "DESC", null, "*", "element");
 		System.out.println(befehl);
-		String result = con.sendSelectCommand("localhost", "root", "", "testinsy", befehl,";",null);
+		String result = con.sendSelectCommand("192.168.1.22", "insy4", "blabla", "testinsy", befehl,";",null);
 		System.out.println(result);
 		
 		
